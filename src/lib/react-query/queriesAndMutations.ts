@@ -3,10 +3,8 @@ import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tansta
 import { createPost, createUserAccount, deletePost, deleteSavedPost, getCurrentUser, getInfinitePosts,  getPostById, getRecentPosts, getSavedPosts, getUserById, getUsers, likePost,  savePost, searchPost, signInAccount, signOutAccount, updatePost, updateUser } from "../appwrite/api";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { QUERY_KEYS } from "./queryKeys";
-import { Models, Query } from "appwrite";
-import { get } from "http";
-import { data } from "react-router-dom";
-import { useUserContext } from "@/context/AuthContext";
+import { Models } from "appwrite";
+
 
 
 
