@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { useSignOutAccount } from '@/lib/react-query/queriesAndMutations';
 import { useEffect } from 'react';
-import { INITIAL_USER, useUserContext } from '@/context/AuthContext';
+import { useUserContext } from '@/context/AuthContext';
 
 const Topbar = () => {
     const { mutate: signout, isSuccess } = useSignOutAccount();
@@ -11,7 +11,15 @@ const Topbar = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            setUser(INITIAL_USER); 
+            setUser({
+                $id: '',
+                id: '',
+                name: '',
+                username: '',
+                email: '',
+                imageUrl: '',
+                bio: '',
+            }); 
             setIsAuthenticated(false);
             navigate(0); 
         }
@@ -21,7 +29,7 @@ const Topbar = () => {
         <section className='topbar'>
             <div className='flex-between py-4 px-3'>
                 <Link to={"/"} className='flex items-center gap-3'>
-                    <img src='/Assetss/images/logo.svg' width={130} height={325} />
+                    <img src='/Assetss/images/logo.svg' width={130} height={325} alt="App Logo" />
                 </Link>
 
                 <div className='flex gap-4'>
@@ -30,10 +38,14 @@ const Topbar = () => {
                         className='shad-button_ghost'
                         onClick={() => signout()} // ✅ Calls logout
                     >
-                        <img src='/Assetss/icons/logout.svg' />
+                        <img src='/Assetss/icons/logout.svg' alt="Logout" />
                     </Button>
                     <Link to={`/profile/${user?.id}`} className='flex-center gap-3'>
-                        <img src={user?.imageUrl || '/Assetss/image/profile-placeholder.svg'} className='h-8 w-8 rounded-full' />
+                        <img
+                            src={user?.imageUrl || '/Assetss/image/profile-placeholder.svg'}
+                            className='h-8 w-8 rounded-full'
+                            alt="User Profile"
+                        />
                     </Link>
                 </div>
             </div>

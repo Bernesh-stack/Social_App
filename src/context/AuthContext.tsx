@@ -3,7 +3,9 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { IUser } from "@/types";
 import { getCurrentUser } from "@/lib/appwrite/api";
 
+// ✅ Include $id in INITIAL_USER
 export const INITIAL_USER = {
+  $id: "",
   id: "",
   name: "",
   username: "",
@@ -38,7 +40,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // ✅ Fix: Improved checkAuthUser to persist session using localStorage
   const checkAuthUser = async () => {
     setIsLoading(true);
     try {
@@ -48,6 +49,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         const currentAccount = await getCurrentUser();
         if (currentAccount) {
           userData = {
+            $id: currentAccount.$id,
             id: currentAccount.$id,
             name: currentAccount.name,
             username: currentAccount.username,
@@ -55,7 +57,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             imageUrl: currentAccount.imageUrl,
             bio: currentAccount.bio,
           };
-          localStorage.setItem("user", JSON.stringify(userData)); // ✅ Store user data for persistence
+          localStorage.setItem("user", JSON.stringify(userData));
         } else {
           return false;
         }
@@ -66,7 +68,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return true;
     } catch (error) {
       console.log(error);
-      localStorage.removeItem("user"); // ✅ Remove corrupted session
+      localStorage.removeItem("user");
       return false;
     } finally {
       setIsLoading(false);
@@ -77,7 +79,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const verifyUser = async () => {
       const isAuthenticated = await checkAuthUser();
       if (!isAuthenticated) {
-        navigate("/sign-in"); // ✅ Only navigate if the user is NOT authenticated
+        navigate("/sign-in");
       }
     };
 

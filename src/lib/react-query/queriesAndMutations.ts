@@ -258,7 +258,7 @@ export const useGetSavedPosts = () => {
 
 export const updates = ()=>{
   return useMutation({
-    mutationFn:(user:IUpdateUser) => updatePost(user),
+    mutationFn:(user:IUpdateUser) => updateUser(user),
   })
 }
 

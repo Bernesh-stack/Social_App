@@ -2,7 +2,7 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { useSignOutAccount } from '@/lib/react-query/queriesAndMutations';
 import { useEffect } from 'react';
-import { INITIAL_USER, useUserContext } from '@/context/AuthContext';
+import {  useUserContext } from '@/context/AuthContext';
 import { sidebarLinks } from '@/constants';
 import { INavLink } from '@/types';
 
@@ -14,7 +14,15 @@ const LeftSidebar = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            setUser(INITIAL_USER); 
+            setUser({
+                $id: '',
+                id: '',
+                name: '',
+                username: '',
+                email: '',
+                imageUrl: '',
+                bio: '',
+            }); 
             setIsAuthenticated(false);
             navigate(0); 
         }
