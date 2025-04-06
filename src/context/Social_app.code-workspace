@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "Social_app",
+			"path": "../.."
+		},
+		{
+			"name": "public",
+			"path": "../../../public"
+		}
+	],
+	"settings": {}
+}
