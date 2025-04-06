@@ -1,5 +1,5 @@
 import { bottombarLinks } from "@/constants";
-import { Label } from "@radix-ui/react-label";
+
 import { Link,useLocation } from "react-router-dom"
 
 const Bottombar = () => {

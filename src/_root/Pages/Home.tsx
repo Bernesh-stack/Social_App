@@ -6,8 +6,8 @@ import { Models } from "appwrite";
 import { Loader } from "lucide-react";
 
 const Home = () => {
-  const { data: posts, isPending: isPostLoading, isError: isPostError } = useGetRecentPosts();
-  const { data: creatorsData, isLoading: isUserLoading, isError: isErrorCreators } = useGetUsers();
+  const { data: posts, isPending: isPostLoading} = useGetRecentPosts();
+  const { data: creatorsData, isLoading: isUserLoading } = useGetUsers();
   const { user } = useUserContext();
 
 

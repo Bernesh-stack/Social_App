@@ -1,12 +1,12 @@
 import GridPostList from '@/components/shared/GridPostList'
 import SearchResults from '@/components/shared/SearchResults'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import useDebounce from '@/hookss/useDebounce'
-import { searchPost } from '@/lib/appwrite/api'
+
 import { useGetPosts, useSearchPosts } from '@/lib/react-query/queriesAndMutations'
 import { Loader } from 'lucide-react'
-import React, { useState } from 'react'
+
 import {useInView} from 'react-intersection-observer'
 const Explore = () => {
 const {data:posts,fetchNextPage,hasNextPage} = useGetPosts()
@@ -28,7 +28,7 @@ const {data:posts,fetchNextPage,hasNextPage} = useGetPosts()
     )
   }
   const showShowSearchResults = searchValue !=="";
-  const shouldShowPosts = !showShowSearchResults && posts.pages.every((item) => item.documents.length ===0)
+  const shouldShowPosts = !showShowSearchResults && posts.pages.every((item:any) => item.documents.length ===0)
   return (
     <div className='explore-container'>
       <div className='explore-inner_container'>
@@ -59,13 +59,13 @@ const {data:posts,fetchNextPage,hasNextPage} = useGetPosts()
         {showShowSearchResults ?(
           <SearchResults
           isSearchFetching={isSearchFetching}
-          searchedPosts = {searchPost}
+          searchedPosts = {searchPost?.documents || []}
           
           
           />
         ): shouldShowPosts? (
           <p className='text-light-4 mt-10 text-center w-full'> End of Post</p>
-        ):posts.pages.map((item,index) =>(
+        ):posts.pages.map((item:any,index) =>(
           <GridPostList key={`page-${index}`} posts = {item.documents}/>
         ))}
 

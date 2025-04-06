@@ -31,7 +31,7 @@ const UpdateProfile = () => {
 
   // Queries
   const { data: currentUser, isLoading: isUserLoading } = useGetUserById(id || ""); // ✅ Properly Fetching User
-  const { mutateAsync: updateUser, isLoading: isLoadingUpdate } = useUpdateUser();
+  const { mutateAsync: updateUser, isPending: isLoadingUpdate } = useUpdateUser();
 
   // If user data is still loading, show loader
   if (isUserLoading || !currentUser)
@@ -81,7 +81,8 @@ const UpdateProfile = () => {
       // Navigate to updated profile
       navigate(`/profile/${id}`);
     } catch (error) {
-      toast({ title: `Something went wrong!`, description: error.message });
+      const errMsg = error instanceof Error ? error.message : 'Unknown error';
+      toast({ title: `Something went wrong!`, description: errMsg });
     }
   };
 
@@ -194,7 +195,7 @@ const UpdateProfile = () => {
 };
 
 export default UpdateProfile;
-function useGetUserById(arg0: string): { data: any; isLoading: any; } {
+function useGetUserById(_: string): { data: any; isLoading: any; } {
   throw new Error("Function not implemented.");
 }
 
