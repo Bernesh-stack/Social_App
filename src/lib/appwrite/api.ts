@@ -1,4 +1,4 @@
-import { ID, Query } from "appwrite";
+import { ID, Models, Query } from "appwrite";
 import { appwriteConfig, account, databases, storage, avatars } from "./config";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { useUserContext } from "@/context/AuthContext";
@@ -365,31 +365,26 @@ export async function deletePost(postId: string,imageId:string) {
   }
 }
 
-export async function getInfinitePosts({pageParam}:{pageParam:number}) {
 
-const queries:any[] = [Query.orderDesc("$updatedAt"),Query.limit(10)]
-if(pageParam){
-  queries.push(Query.cursorAfter(pageParam.toString()));
+export async function getInfinitePosts(pageParam: string | null) {
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(10)];
+
+  if (pageParam) {
+    queries.push(Query.cursorAfter(pageParam));
+  }
+
+  try {
+    const posts: Models.DocumentList<Models.Document> = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      queries
+    );
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    throw new Error("Failed to fetch posts.");
+  }
 }
-try{
-  const post = await databases.listDocuments(
-    appwriteConfig.databaseId,
-    appwriteConfig.postCollectionId,
-    queries
-  )
-
-  if(!post) throw "I am from infinite scrol ";
-  return post
-
-}
-catch(error){
-  console.log(error)
-}
- 
-  
-}
-
-
 
 export async function searchPost(searchTerm:string) {
 

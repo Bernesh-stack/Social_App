@@ -3,7 +3,7 @@ import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tansta
 import { createPost, createUserAccount, deletePost, deleteSavedPost, getCurrentUser, getInfinitePosts,  getPostById, getRecentPosts, getSavedPosts, getUserById, getUsers, likePost,  savePost, searchPost, signInAccount, signOutAccount, updatePost, updateUser } from "../appwrite/api";
 import { INewPost, INewUser, IUpdatePost, IUpdateUser } from "@/types";
 import { QUERY_KEYS } from "./queryKeys";
-import { Query } from "appwrite";
+import { Models, Query } from "appwrite";
 import { get } from "http";
 import { data } from "react-router-dom";
 import { useUserContext } from "@/context/AuthContext";
@@ -180,21 +180,22 @@ export const useDeletePost = ()=>{
   })
 }
 
+export type Post = Models.Document;
+export type PostsResponse = Models.DocumentList<Post>;
+
 export const useGetPosts = () => {
-  return useInfiniteQuery({
+  return useInfiniteQuery<PostsResponse, Error>({
     queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-    queryFn: getInfinitePosts,
-
-    // Ensure lastPage is defined and has documents
+    queryFn: ({ pageParam }: { pageParam?: unknown }) =>
+      getInfinitePosts(pageParam as string | null),
+    initialPageParam: null,
     getNextPageParam: (lastPage) => {
-      if (!lastPage || lastPage.documents.length === 0) return null;
-
-      const lastId = lastPage.documents[lastPage.documents.length - 1]?.$id;
-      return lastId ?? null; // Ensure null is returned if undefined
+      if (!lastPage || lastPage.documents.length === 0) return undefined;
+      const lastDocument = lastPage.documents[lastPage.documents.length - 1];
+      return lastDocument.$id;
     },
   });
 };
-
 
 export const useSearchPosts = (searchTerm:string) =>{
   return useQuery({
