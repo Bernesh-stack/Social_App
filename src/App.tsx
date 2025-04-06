@@ -7,7 +7,7 @@ import AuthLayout from "./_auth/AuthLayout";
 import RootLayout from "./_root/RootLayout";
 import { Toaster } from "@/components/ui/toaster"
 import Explore from "./_root/Pages/Explore";
-import EditProfile from "./_root/Pages/EditProfile";
+
 
 
 
