@@ -11,7 +11,7 @@ import { Link, useParams } from 'react-router-dom'
 
 const Profile = () => {
   const { id } = useParams()
-  console.log(id)
+
   const { data: currentUser, isLoading: isUserLoading } = useGetUserById(id || "");
   const {user} = useUserContext()
   let Post_there =currentUser?.posts?.length || 0

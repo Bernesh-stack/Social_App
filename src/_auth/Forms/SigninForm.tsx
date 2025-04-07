@@ -50,7 +50,7 @@ const SigninForm = () => {
         console.log("No active session found, continuing...");
       }
 
-      console.log("Attempting to sign in...");
+  
 
       const session = await signInAccount({
         email: values.email,
@@ -71,7 +71,7 @@ const SigninForm = () => {
       }
     } catch (error) {
       toast({ title: "Error signing in. Please try again." });
-      console.error(error);
+   
     }
   }
 

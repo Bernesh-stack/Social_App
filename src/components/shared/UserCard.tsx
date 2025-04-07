@@ -3,7 +3,7 @@ import { Button } from "../ui/button";
 import { Link } from "react-router-dom";
 
 const UserCard = ({ datas }: { datas: any }) => {
-  console.log(datas);
+
 
   return (
     <div className="flex flex-col items-center justify-center p-2 user-card w-full">

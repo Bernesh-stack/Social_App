@@ -28,7 +28,7 @@ const LeftSidebar = () => {
         }
     }, [isSuccess]);
 
-    console.log("User: from the left side bar ", user);
+
 
     return (
         <nav className="leftsidebar">

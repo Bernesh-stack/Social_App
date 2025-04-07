@@ -12,7 +12,7 @@ const PostDetails = () => {
   const { data: post, isPending } = useGetPostById(id || '');
   const {user } = useUserContext();
   // const{mutate:deletePost} = useDeletePost();
-  console.log(post?.imageUrl)
+ 
   const handleDeletePost = () =>{
     // if (!id || !post?.imageId) {
     //   console.error("Post ID or Image ID is missing");
