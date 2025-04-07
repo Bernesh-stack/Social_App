@@ -51,7 +51,7 @@ const PostCard = ({ post }: PostCardProps) => {
           className={`${user.id !== post.creator.$id && "hidden"}`}
         >
           <img
-            src="/Assetss/icons/edit.svg"
+            src="/assets/icons/edit.svg"
             alt="edit"
             width={20}
             height={20}

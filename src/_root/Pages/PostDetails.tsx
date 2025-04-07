@@ -36,7 +36,7 @@ const PostDetails = () => {
 
                  
                 <Link to={`/profile/${post?.creator.$id}`} className='flex items-center gap-3'>
-                    <img src={post?.creator?.imageUrl || "/Assetss/icons/profile-placeholder.svg"}
+                    <img src={post?.creator?.imageUrl || "/assets/icons/profile-placeholder.svg"}
                     className='rounded-full w-8 h-8 lg:w-12 lg:h-12'></img>
             
                 <div className='flex flex-col '>
@@ -52,7 +52,7 @@ const PostDetails = () => {
                 </Link>
                 <div className='flex-center gap-2 '>
                   <Link to={`/update-post/${post?.$id}`} className={`${user.id !== post?.creator.$id && 'hidden'}`} >
-                  <img width={24} height={24} src='/Assetss/icons/edit.svg'></img>
+                  <img width={24} height={24} src='/assets/icons/edit.svg'></img>
                   
                   
                   </Link>

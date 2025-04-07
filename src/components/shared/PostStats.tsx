@@ -57,8 +57,8 @@ useEffect(() =>{
     <div className='flex justify-between items-center z-20'>
         <div className='flex gap-2 mr-5'>
            <img src={`${checkIsLiked(likes,userId)?
-            "Assetss/icons/liked.svg":
-          "Assetss/icons/like.svg"}`} alt='likes'
+            "assets/icons/liked.svg":
+          "assets/icons/like.svg"}`} alt='likes'
             width={20} height={20} 
             onClick={handleLikePost} 
             
@@ -70,7 +70,7 @@ useEffect(() =>{
         </div>
 
         <div className='flex gap-2 mr-5'>
-        {isSavingPost || isDeletingSaved ? <Loader/> :<img src={ isSaved ?"/Assetss/icons/saved.svg":"/Assetss/icons/save.svg" } alt='Likes'
+        {isSavingPost || isDeletingSaved ? <Loader/> :<img src={ isSaved ?"/assets/icons/saved.svg":"/assets/icons/save.svg" } alt='Likes'
             width={20} height={20} 
             onClick={handleSavePost} 
             

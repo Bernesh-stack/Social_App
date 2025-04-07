@@ -44,7 +44,7 @@ const Profile = () => {
     {user.id === id && (
       <Link to={`/update-profile/${user.id}`}>
       <div className='flex flex-row mt-10 w-full ml-28 gap-4'>
-        <img src='/Assetss/icons/edit.svg' alt="Edit"  className='w-8 cursor-pointer'/>
+        <img src='/assets/icons/edit.svg' alt="Edit"  className='w-8 cursor-pointer'/>
         <p className='sm-regular hover:text-blue-200 cursor-pointer'>Edit Profile</p>
       </div>
       </Link>

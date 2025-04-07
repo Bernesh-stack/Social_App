@@ -35,13 +35,13 @@ const LeftSidebar = () => {
             <div className="flex flex-col gap-11">
                 {/* Logo */}
                 <Link to={"/"} className='flex items-center gap-3'>
-                    <img src='/Assetss/images/logo.svg' width={170} height={36} alt="App Logo" />
+                    <img src='/assets/images/logo.svg' width={170} height={36} alt="App Logo" />
                 </Link>
 
                 {/* Profile Section */}
                 <Link to={`/profile/${user.id}`} className='items-center gap-3 flex'>
                     <img 
-                        src={user.imageUrl && user.imageUrl.trim() !== "" ? user.imageUrl : "/Assetss/images/default-avatar.png"} 
+                        src={user.imageUrl && user.imageUrl.trim() !== "" ? user.imageUrl : "/assets/images/default-avatar.png"} 
                         className='h-14 w-14 rounded-full' 
                         alt='Profile'
                     />
@@ -54,7 +54,7 @@ const LeftSidebar = () => {
                 {/* Edit Profile Link (Only show if user exists) */}
                 {user && user.id && (
                     <Link to={`/update-profile/${user.id}`} className='flex items-center gap-5'>
-                        <img src="/Assetss/icons/edit.svg" className='h-10 w-8 ml-2' alt="Edit Profile" />
+                        <img src="/assets/icons/edit.svg" className='h-10 w-8 ml-2' alt="Edit Profile" />
                         <p className='sm-regular text-light-3'>Edit Profile</p>
                     </Link>
                 )}
@@ -80,7 +80,7 @@ const LeftSidebar = () => {
                 className='shad-button_ghost'
                 onClick={() => signout()} 
             >
-                <img src='/Assetss/icons/logout.svg' alt="Logout Icon" />
+                <img src='/assets/icons/logout.svg' alt="Logout Icon" />
                 <p className='small-medium lg:base-medium'>Logout</p>
             </Button>
         </nav>

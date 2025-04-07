@@ -2,7 +2,6 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, useParams } from "react-router-dom";
-
 import {
   Form,
   FormControl,
@@ -91,7 +90,7 @@ const UpdateProfile = () => {
       <div className="common-container">
         <div className="flex-start gap-3 justify-start w-full max-w-5xl">
           <img
-            src="/Assetss/icons/edit.svg"
+            src="/assets/icons/edit.svg"
             width={36}
             height={36}
             alt="edit"
